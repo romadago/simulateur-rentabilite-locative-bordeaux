@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 // --- Static Data & Configuration ---
 
 const quartierData: { [key: string]: { prixM2: number, zone: number } } = {
+    // Quartier: [Prix au m², Zone de Loyer (1-4)]
     'Chartrons': { prixM2: 5500, zone: 2 },
     'Bastide': { prixM2: 4800, zone: 4 },
     'Nansouty': { prixM2: 4700, zone: 3 },
@@ -14,14 +15,15 @@ const quartierData: { [key: string]: { prixM2: number, zone: number } } = {
     'Saint-Genès': { prixM2: 5100, zone: 3 },
 };
 
-// DONNÉES MISES À JOUR : Utilisation du loyer de référence MAJORÉ pour un calcul de rentabilité réaliste
-const marketRentData: { [key: string]: { [key: string]: number } } = {
-    '1': { '1': 17.2, '2': 15.1, '3': 13.6, '4': 13.2 }, // Zone 1
-    '2': { '1': 15.6, '2': 13.7, '3': 12.4, '4': 12.0 }, // Zone 2
-    '3': { '1': 14.4, '2': 12.6, '3': 11.6, '4': 11.3  }, // Zone 3
-    '4': { '1': 13.4, '2': 11.8, '3': 10.8, '4': 10.4  }, // Zone 4
+const rentData: { [key: string]: { [key: string]: number } } = {
+    // Loyers de référence en €/m² pour NON MEUBLÉ
+    '1': { '1': 14.3, '2': 12.6, '3': 11.3, '4': 11.0 }, // Zone 1
+    '2': { '1': 13.0, '2': 11.4, '3': 10.3, '4': 10.0 }, // Zone 2
+    '3': { '1': 12.0, '2': 10.5, '3': 9.7,  '4': 9.4  }, // Zone 3
+    '4': { '1': 11.2, '2': 9.8,  '3': 9.0,  '4': 8.7  }, // Zone 4
 };
 
+// Surface moyenne par type de bien
 const surfaceData: { [key: string]: number } = { 'T1': 25, 'T2': 45, 'T3': 65, 'T4': 85 };
 
 type Scenario = {
@@ -59,8 +61,8 @@ const App: React.FC = () => {
             const prixFinal = budget < prixEstime ? budget : prixEstime;
 
             const typeBienIndex = Object.keys(surfaceData).indexOf(typeBien) + 1;
-            const loyerM2 = marketRentData[data.zone.toString()]?.[typeBienIndex.toString()] || 0;
-            const loyerAnnuel = loyerM2 * surfaceAchetable * 12;
+            const loyerRefM2 = rentData[data.zone.toString()]?.[typeBienIndex.toString()] || 0;
+            const loyerAnnuel = loyerRefM2 * surfaceAchetable * 12;
             const rendement = prixFinal > 0 ? (loyerAnnuel / prixFinal) * 100 : 0;
 
             return { name: quartierName, rendement: isFinite(rendement) ? rendement : 0, loyer: loyerAnnuel / 12, prix: prixFinal };
