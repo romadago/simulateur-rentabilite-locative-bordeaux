@@ -15,13 +15,14 @@ const quartierData: { [key: string]: { prixM2: number, zone: number } } = {
     'Saint-Genès': { prixM2: 5100, zone: 3 },
 };
 
+// DONNÉES MISES À JOUR : Utilisation du loyer de référence MAJORÉ
 const rentData: { [key: string]: { [key: string]: number } } = {
-    // Loyers de référence en €/m² pour NON MEUBLÉ
-    '1': { '1': 14.3, '2': 12.6, '3': 11.3, '4': 11.0 }, // Zone 1
-    '2': { '1': 13.0, '2': 11.4, '3': 10.3, '4': 10.0 }, // Zone 2
-    '3': { '1': 12.0, '2': 10.5, '3': 9.7,  '4': 9.4  }, // Zone 3
-    '4': { '1': 11.2, '2': 9.8,  '3': 9.0,  '4': 8.7  }, // Zone 4
+    '1': { '1': 17.2, '2': 15.1, '3': 13.6, '4': 13.2 }, // Zone 1
+    '2': { '1': 15.6, '2': 13.7, '3': 12.4, '4': 12.0 }, // Zone 2
+    '3': { '1': 14.4, '2': 12.6, '3': 11.6, '4': 11.3  }, // Zone 3
+    '4': { '1': 13.4, '2': 11.8, '3': 10.8, '4': 10.4  }, // Zone 4
 };
+
 
 // Surface moyenne par type de bien
 const surfaceData: { [key: string]: number } = { 'T1': 25, 'T2': 45, 'T3': 65, 'T4': 85 };
