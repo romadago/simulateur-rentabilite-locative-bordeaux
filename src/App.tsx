@@ -228,8 +228,8 @@ const App: React.FC = () => {
                     {emailMessage && <p className="text-sm text-center text-emerald-400 mb-4 h-5">{emailMessage}</p>}
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
-                        <a href="https://www.aeterniapatrimoine.fr/solutions/" target="_blank" rel="noopener noreferrer" className="bg-[#00FFD2] text-slate-900 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-white transition-colors duration-300 w-full sm:w-auto">
-                            Découvrir nos solutions
+                        <a href="https://www.aeterniapatrimoine.fr/solutions/scpi/" target="_blank" rel="noopener noreferrer" className="bg-[#00FFD2] text-slate-900 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-white transition-colors duration-300 w-full sm:w-auto">
+                            Découvrir nos solutions SCPI
                         </a>
                         <a href="https://www.aeterniapatrimoine.fr/contact/" target="_blank" rel="noopener noreferrer" className="bg-transparent border-2 border-[#00FFD2] text-[#00FFD2] font-bold py-3 px-8 rounded-lg hover:bg-[#00FFD2] hover:text-slate-900 transition-colors duration-300 w-full sm:w-auto">
                             Prendre rendez-vous
